@@ -1,0 +1,14 @@
+---
+description: Deploying this app into the user's own cloud account, or moving it off Heroku, Railway, Render or Vercel
+globs: Procfile, app.json, render.yaml, railway.json, railway.toml, vercel.json, Dockerfile, docker-compose.yml, compose.yaml
+alwaysApply: false
+---
+
+When the user asks to deploy, host or publish this app, or to move it off Heroku, Railway, Render or Vercel, use the
+skills in this plugin:
+
+- `check-deploy-readiness` to find what would stop a deploy, with the fix for each.
+- `deploy-to-own-cloud` to put it live in the user's own AWS, Google Cloud, Azure or DigitalOcean account.
+- `migrate-off-platform` when the repository has a Procfile, app.json, render.yaml, railway.json or railway.toml.
+
+Never ask the user to paste cloud credentials into the chat. They connect their cloud account in The Deployer's app.

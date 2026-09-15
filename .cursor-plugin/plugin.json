@@ -1,0 +1,6 @@
+{
+  "name": "thedeployer",
+  "description": "Deploy this repository into your own AWS, Google Cloud, Azure or DigitalOcean account: check what's missing, fix it, and ship with monitoring. Also moves apps off Heroku, Railway, Render and Vercel.",
+  "version": "0.1.0",
+  "author": { "name": "The Deployer" }
+}

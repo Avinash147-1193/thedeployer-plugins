@@ -1,0 +1,15 @@
+{
+  "name": "thedeployer",
+  "owner": {
+    "name": "The Deployer",
+    "url": "https://thedploy.com"
+  },
+  "description": "The Deployer's plugin: check, deploy and move apps into your own AWS, Google Cloud, Azure or DigitalOcean account.",
+  "plugins": [
+    {
+      "name": "thedeployer",
+      "source": "./",
+      "description": "Deploy this repository into your own cloud account, or move it off Heroku, Railway, Render or Vercel."
+    }
+  ]
+}
