@@ -1,11 +1,25 @@
 {
   "name": "thedeployer",
   "displayName": "The Deployer",
-  "version": "0.1.0",
-  "description": "Deploy this repository into your own AWS, Google Cloud, Azure or DigitalOcean account: check what's missing, fix it, and ship with monitoring. Also moves apps off Heroku, Railway, Render and Vercel.",
-  "author": { "name": "The Deployer", "url": "https://thedploy.com" },
+  "version": "0.2.0",
+  "description": "Let your coding agent deploy this repository into your own AWS, Google Cloud, Azure or DigitalOcean account and run it: check and fix the code, launch, fix failures, scale, domains and more. Also moves apps off Heroku, Railway, Render and Vercel.",
+  "author": {
+    "name": "The Deployer",
+    "url": "https://thedploy.com"
+  },
   "homepage": "https://thedploy.com",
   "repository": "https://github.com/Avinash147-1193/thedeployer-plugins",
   "license": "MIT",
-  "keywords": ["deploy", "digitalocean", "aws", "google-cloud", "azure", "heroku", "railway", "render", "vercel", "mcp"]
+  "keywords": [
+    "deploy",
+    "digitalocean",
+    "aws",
+    "google-cloud",
+    "azure",
+    "heroku",
+    "railway",
+    "render",
+    "vercel",
+    "mcp"
+  ]
 }

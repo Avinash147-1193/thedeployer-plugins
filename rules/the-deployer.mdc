@@ -9,6 +9,11 @@ skills in this plugin:
 
 - `check-deploy-readiness` to find what would stop a deploy, with the fix for each.
 - `deploy-to-own-cloud` to put it live in the user's own AWS, Google Cloud, Azure or DigitalOcean account.
+- `fix-failed-deployment` when a deployment on The Deployer failed.
+- `operate-live-app` to change, scale, stop or check an app that is already live.
 - `migrate-off-platform` when the repository has a Procfile, app.json, render.yaml, railway.json or railway.toml.
+
+The `thedeployer` MCP server's `guide` tool holds The Deployer's playbooks; `project` names the next call for any project.
+Anything that costs money waits for the user's yes.
 
 Never ask the user to paste cloud credentials into the chat. They connect their cloud account in The Deployer's app.

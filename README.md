@@ -3,7 +3,10 @@
 Skills, a Claude Code plugin, a Cursor plugin and an MCP server that let your coding agent:
 
 - **check** whether a repository will deploy, and fix what's missing
-- **deploy** it into your own AWS, Google Cloud, Azure or DigitalOcean account, with HTTPS, health checks and monitoring
+- **deploy** it into your own AWS, Google Cloud, Azure or DigitalOcean account end to end, with HTTPS, health checks and
+  monitoring, asking you before anything that costs money
+- **fix** a failed deployment, in your code when that's the cause, and retry
+- **run** it afterwards: redeploys, env, domains, scaling, start and stop schedules, databases and access
 - **move** an app off Heroku, Railway, Render or Vercel, with the old app kept as the rollback
 
 Your cloud provider bills you directly, and your first app is free.
@@ -14,6 +17,8 @@ Your cloud provider bills you directly, and your first app is free.
 |---|---|
 | `check-deploy-readiness` | "Will this deploy?", "Is this production ready?", or before going live |
 | `deploy-to-own-cloud` | "Deploy this", "Host this in my own AWS or DigitalOcean" |
+| `fix-failed-deployment` | "My deploy failed", "Why won't it start?" |
+| `operate-live-app` | "Add my domain", "Scale it up", "Stop it at night", "Attach a database" |
 | `migrate-off-platform` | The repository has a Procfile, app.json, render.yaml, railway.json or railway.toml, or you're leaving a platform |
 
 ## Install
@@ -42,14 +47,24 @@ gemini extensions install https://github.com/Avinash147-1193/thedeployer-plugins
 
 ## The MCP server
 
-`check_repo` works without a key.
+`check_repo` and `guide` work without a key.
 
-For `plan_deploy`, `status`, `logs`, `redeploy` and `request_done_for_you`:
+For everything else:
 
-1. Create an API key on your Profile page in The Deployer.
+1. Create an API key on your Profile page in The Deployer. Choose **Operate** to let the agent set up, launch and run
+   projects, or **Look and redeploy**.
 2. Set it as `THEDEPLOYER_API_KEY` in your environment. Never put the key in a file you commit.
 
-A key can't read your cloud credentials or billing.
+A key can't read your cloud credentials, your env values or billing, and anything that costs money waits for your yes.
+
+**Codex** (`~/.codex/config.toml`):
+
+```toml
+[mcp_servers.thedeployer]
+command = "npx"
+args = ["-y", "thedeployer-mcp"]
+env = { THEDEPLOYER_API_KEY = "your key" }
+```
 
 ## Privacy
 

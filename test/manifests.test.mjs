@@ -49,7 +49,8 @@ test('the MCP server needs no key in any file, and reads it from the environment
 })
 
 test('skills follow the skills format and say when to use them', () => {
-  assert.deepEqual(SKILLS.sort(), ['check-deploy-readiness', 'deploy-to-own-cloud', 'migrate-off-platform'])
+  assert.deepEqual(SKILLS.sort(), ['check-deploy-readiness', 'deploy-to-own-cloud', 'fix-failed-deployment', 'migrate-off-platform',
+    'operate-live-app'])
   for (const dir of SKILLS) {
     const text = read(`skills/${dir}/SKILL.md`)
     const meta = frontmatter(text)
