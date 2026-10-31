@@ -47,24 +47,21 @@ gemini extensions install https://github.com/Avinash147-1193/thedeployer-plugins
 
 ## The MCP server
 
-`check_repo` and `guide` work without a key.
+Every install above connects to `https://app.thedploy.com/mcp`. The first time the agent uses it, it opens The
+Deployer in your browser: sign in and approve, and there's no key to create or paste. `check_repo` and `guide` work
+before you sign in. You can also connect any agent from **Connections → Coding agents** in The Deployer.
 
-For everything else:
+An agent can't read your cloud credentials, your env values or billing, and anything that costs money waits for your
+yes.
 
-1. Create an API key on your Profile page in The Deployer. Choose **Operate** to let the agent set up, launch and run
-   projects, or **Look and redeploy**.
-2. Set it as `THEDEPLOYER_API_KEY` in your environment. Never put the key in a file you commit.
+**Codex:**
 
-A key can't read your cloud credentials, your env values or billing, and anything that costs money waits for your yes.
-
-**Codex** (`~/.codex/config.toml`):
-
-```toml
-[mcp_servers.thedeployer]
-command = "npx"
-args = ["-y", "thedeployer-mcp"]
-env = { THEDEPLOYER_API_KEY = "your key" }
+```sh
+codex mcp add thedeployer --url https://app.thedploy.com/mcp
 ```
+
+For tools that can't sign in (or CI), create an API key on your Profile page and use the `thedeployer-mcp` npm
+package with `THEDEPLOYER_API_KEY` set. Never put the key in a file you commit.
 
 ## Privacy
 

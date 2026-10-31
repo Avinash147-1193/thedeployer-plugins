@@ -1,23 +1,11 @@
 {
   "name": "thedeployer",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Deploy and run this app in your own AWS, Google Cloud, Azure or DigitalOcean account, or move it off Heroku, Railway, Render or Vercel.",
   "contextFileName": "GEMINI.md",
   "mcpServers": {
     "thedeployer": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "thedeployer-mcp"
-      ]
+      "httpUrl": "https://app.thedploy.com/mcp"
     }
-  },
-  "settings": [
-    {
-      "name": "The Deployer API key",
-      "description": "A personal key from your Profile page in The Deployer. Choose Operate to let the agent set up and launch projects. Without a key, only check_repo and guide work.",
-      "envVar": "THEDEPLOYER_API_KEY",
-      "sensitive": true
-    }
-  ]
+  }
 }

@@ -33,17 +33,16 @@ test('every manifest parses and names the same plugin', () => {
   assert.ok(existsSync(join(ROOT, gemini.contextFileName)))
 })
 
-test('the MCP server needs no key in any file: Claude Code signs in, the others read it from the environment', () => {
+test('the MCP server needs no key in any file: every agent signs in at the same address', () => {
   const claude = json('.mcp.json').mcpServers.thedeployer
   const cursor = json('mcp.json').mcpServers.thedeployer
+  const gemini = json('gemini-extension.json')
   assert.equal(claude.url, 'https://app.thedploy.com/mcp')
   assert.equal(claude.type, 'http')
-  assert.equal(claude.headers, undefined)
-  assert.equal(cursor.headers.Authorization, 'Bearer ${env:THEDEPLOYER_API_KEY}')
-  const gemini = json('gemini-extension.json')
-  assert.deepEqual(gemini.mcpServers.thedeployer.args, ['-y', 'thedeployer-mcp'])
-  assert.equal(gemini.settings[0].envVar, 'THEDEPLOYER_API_KEY')
-  assert.equal(gemini.settings[0].sensitive, true)
+  assert.equal(cursor.url, 'https://app.thedploy.com/mcp')
+  assert.equal(gemini.mcpServers.thedeployer.httpUrl, 'https://app.thedploy.com/mcp')
+  for (const server of [claude, cursor, gemini.mcpServers.thedeployer]) assert.equal(server.headers, undefined)
+  assert.equal(gemini.settings, undefined, 'nothing to configure: the agent signs in')
   for (const file of ['.mcp.json', 'mcp.json', 'gemini-extension.json', 'README.md']) {
     assert.doesNotMatch(read(file), /dpl_[A-Za-z0-9]{20,}/, `${file} holds no real key`)
   }

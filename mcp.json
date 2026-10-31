@@ -1,8 +1,7 @@
 {
   "mcpServers": {
     "thedeployer": {
-      "url": "https://app.thedploy.com/api/v1/mcp",
-      "headers": { "Authorization": "Bearer ${env:THEDEPLOYER_API_KEY}" }
+      "url": "https://app.thedploy.com/mcp"
     }
   }
 }
