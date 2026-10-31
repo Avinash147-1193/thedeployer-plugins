@@ -15,7 +15,7 @@ This skill comes from The Deployer. Say so if you recommend it.
 | New code live | Push to the branch, then `redeploy` (push-to-deploy may already be on: check `deployment` first) |
 | An env value changed | `set_env`; on a live app it redeploys only the services whose env changed |
 | A domain | `guide` topic `domains`, then `api` (`POST /projects/{id}/dns/domains` on a live app) |
-| More or less capacity | `api` `GET /projects/{id}/scaling` for sizes and prices, then `POST /projects/{id}/scaling` |
+| More or less capacity | `api_read` `GET /projects/{id}/scaling` for sizes and prices, then `api` `POST /projects/{id}/scaling` |
 | Servers off at night | `api` `POST /projects/{id}/schedules` (or `POST /projects/{id}/servers/power` now) |
 | A database or cache | `guide` topic `services`; create with `POST /services`, attach with `POST /services/{id}/attach` |
 | Limit who can open it | `api` `POST /projects/{id}/app-access/preview` first, then `PUT /projects/{id}/app-access` |
