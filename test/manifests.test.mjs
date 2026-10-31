@@ -33,11 +33,12 @@ test('every manifest parses and names the same plugin', () => {
   assert.ok(existsSync(join(ROOT, gemini.contextFileName)))
 })
 
-test('the MCP server needs no key in any file, and reads it from the environment', () => {
+test('the MCP server needs no key in any file: Claude Code signs in, the others read it from the environment', () => {
   const claude = json('.mcp.json').mcpServers.thedeployer
   const cursor = json('mcp.json').mcpServers.thedeployer
-  assert.equal(claude.url, 'https://app.thedploy.com/api/v1/mcp')
-  assert.equal(claude.headers.Authorization, 'Bearer ${THEDEPLOYER_API_KEY}')
+  assert.equal(claude.url, 'https://app.thedploy.com/mcp')
+  assert.equal(claude.type, 'http')
+  assert.equal(claude.headers, undefined)
   assert.equal(cursor.headers.Authorization, 'Bearer ${env:THEDEPLOYER_API_KEY}')
   const gemini = json('gemini-extension.json')
   assert.deepEqual(gemini.mcpServers.thedeployer.args, ['-y', 'thedeployer-mcp'])
@@ -49,8 +50,8 @@ test('the MCP server needs no key in any file, and reads it from the environment
 })
 
 test('skills follow the skills format and say when to use them', () => {
-  assert.deepEqual(SKILLS.sort(), ['check-deploy-readiness', 'deploy-to-own-cloud', 'fix-failed-deployment', 'migrate-off-platform',
-    'operate-live-app'])
+  assert.deepEqual(SKILLS.sort(), ['check-deploy-readiness', 'deploy-to-own-cloud', 'fix-failed-deployment', 'fix-requests',
+    'migrate-off-platform', 'operate-live-app'])
   for (const dir of SKILLS) {
     const text = read(`skills/${dir}/SKILL.md`)
     const meta = frontmatter(text)
@@ -78,4 +79,14 @@ test('the Cursor rule is scoped to platform and container files', () => {
   const rule = read('rules/the-deployer.mdc')
   for (const file of ['Procfile', 'render.yaml', 'railway.json', 'vercel.json']) assert.match(rule, new RegExp(file.replace('.', '\\.')))
   assert.match(rule, /alwaysApply: false/)
+})
+
+test('the listener monitor runs the bundled script and the script never prints a token', () => {
+  const monitors = json('monitors/monitors.json')
+  assert.equal(monitors.length, 1)
+  assert.deepEqual(Object.keys(monitors[0]).sort(), ['command', 'description', 'name'])
+  assert.match(monitors[0].command, /^node "\$\{CLAUDE_PLUGIN_ROOT\}"\/scripts\/listen\.mjs$/)
+  const script = read('scripts/listen.mjs')
+  assert.doesNotMatch(script, /say\([^)]*token/i, 'no line the agent sees mentions the token')
+  assert.match(script, /mode: 0o600/)
 })

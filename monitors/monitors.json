@@ -1,0 +1,7 @@
+[
+  {
+    "name": "fix-requests",
+    "command": "node \"${CLAUDE_PLUGIN_ROOT}\"/scripts/listen.mjs",
+    "description": "Code problems The Deployer hands to this session"
+  }
+]

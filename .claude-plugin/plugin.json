@@ -1,7 +1,7 @@
 {
   "name": "thedeployer",
   "displayName": "The Deployer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Let your coding agent deploy this repository into your own AWS, Google Cloud, Azure or DigitalOcean account and run it: check and fix the code, launch, fix failures, scale, domains and more. Also moves apps off Heroku, Railway, Render and Vercel.",
   "author": {
     "name": "The Deployer",

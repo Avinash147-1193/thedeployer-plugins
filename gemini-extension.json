@@ -1,6 +1,6 @@
 {
   "name": "thedeployer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Deploy and run this app in your own AWS, Google Cloud, Azure or DigitalOcean account, or move it off Heroku, Railway, Render or Vercel.",
   "contextFileName": "GEMINI.md",
   "mcpServers": {
